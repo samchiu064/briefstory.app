@@ -7,6 +7,7 @@ import { Geist, Geist_Mono, Inter } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import '../globals.css'
 import { cn } from '@/lib/utils'
+import { languageAlternates, OG_LOCALES, SITE_NAME, SITE_URL } from '@/lib/site'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -31,10 +32,45 @@ export async function generateMetadata({
   const { locale } = await params
   if (!hasLocale(routing.locales, locale)) return {}
   const t = await getTranslations({ locale, namespace: 'Metadata' })
+  const title = t('title')
+  const description = t('description')
+  const ogImage = {
+    url: `/og/${locale}.png`,
+    width: 1200,
+    height: 630,
+    alt: title,
+  }
 
   return {
-    title: t('title'),
-    description: t('description'),
+    // 讓下面的相對網址（canonical、hreflang、OG 圖片）都變成完整網址
+    metadataBase: new URL(SITE_URL),
+    title,
+    description,
+    applicationName: SITE_NAME,
+    alternates: {
+      canonical: `/${locale}`,
+      // 告訴搜尋引擎同一頁的其他語言版本
+      languages: languageAlternates(),
+    },
+    // 分享到 LinkedIn、Slack、LINE、Facebook 時的預覽卡片
+    openGraph: {
+      type: 'website',
+      siteName: SITE_NAME,
+      url: `/${locale}`,
+      title,
+      description,
+      locale: OG_LOCALES[locale],
+      alternateLocale: routing.locales
+        .filter((l) => l !== locale)
+        .map((l) => OG_LOCALES[l]),
+      images: [ogImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage],
+    },
   }
 }
 
@@ -44,6 +80,19 @@ export default async function LocaleLayout({
 }: LayoutProps<'/[locale]'>) {
   const { locale } = await params
   if (!hasLocale(routing.locales, locale)) notFound()
+
+  const t = await getTranslations({ locale, namespace: 'Metadata' })
+  // 結構化資料：告訴搜尋引擎這是一個 Web 應用程式
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: SITE_NAME,
+    url: `${SITE_URL}/${locale}`,
+    description: t('description'),
+    inLanguage: locale,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+  }
 
   return (
     <html
@@ -67,6 +116,13 @@ export default async function LocaleLayout({
         suppressHydrationWarning
         className="min-h-screen bg-background text-foreground antialiased"
       >
+        <script
+          type="application/ld+json"
+          // 把 < 轉成 unicode，避免內容被當成 HTML 標籤（XSS）
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+          }}
+        />
         <NextIntlClientProvider>
           <ThemeProvider
             attribute="class"
