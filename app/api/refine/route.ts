@@ -1,45 +1,56 @@
-import { NextResponse } from "next/server";
-import { generateText, Output } from "ai";
-import { openai } from "@ai-sdk/openai";
-import { z } from "zod";
-import { StarStoryOutputSchema } from "@/types/story";
-import { createStory } from "@/lib/dal/stories";
-import { languageEnum, categoryEnum } from "@/db/schema";
+import { NextResponse } from 'next/server'
+import { generateText, Output } from 'ai'
+import { openai } from '@ai-sdk/openai'
+import { z } from 'zod'
+import { StarStoryOutputSchema } from '@/types/story'
+import { createStory } from '@/lib/dal/stories'
+import { LIMITS } from '@/lib/limits'
+import { languageEnum, categoryEnum } from '@/db/schema'
 
 const RefineRequestSchema = z.object({
   originalStory: z.object({
-    situation: z.string(),
-    task: z.string(),
-    action: z.array(z.string()),
-    result: z.string(),
+    situation: z.string().max(LIMITS.storyField),
+    task: z.string().max(LIMITS.storyField),
+    action: z.array(z.string().max(LIMITS.storyField)).max(LIMITS.actionItems),
+    result: z.string().max(LIMITS.storyField),
     category: z.enum(categoryEnum.enumValues),
     outputLanguage: z.enum(languageEnum.enumValues),
   }),
-  additionalContext: z.string().min(5, "補充資訊至少需要 5 個字"),
-});
+  additionalContext: z
+    .string()
+    .min(5, '補充資訊至少需要 5 個字')
+    .max(
+      LIMITS.additionalContext,
+      `補充資訊最多 ${LIMITS.additionalContext} 個字`,
+    ),
+})
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const parseResult = RefineRequestSchema.safeParse(body);
+    const body = await req.json()
+    const parseResult = RefineRequestSchema.safeParse(body)
 
     if (!parseResult.success) {
       return NextResponse.json(
-        { error: "Invalid parameters", details: z.treeifyError(parseResult.error) },
-        { status: 400 }
-      );
+        {
+          error: 'Invalid parameters',
+          details: z.treeifyError(parseResult.error),
+        },
+        { status: 400 },
+      )
     }
 
-    const { originalStory, additionalContext } = parseResult.data;
+    const { originalStory, additionalContext } = parseResult.data
 
     const languageInstruction =
-      originalStory.outputLanguage === "en"
-        ? "CRITICAL: You MUST write the ENTIRE refined output strictly in fluent, professional ENGLISH."
-        : "重要規範：請務必使用【繁體中文 (Traditional Chinese)】編寫所有內容。";
+      originalStory.outputLanguage === 'en'
+        ? 'CRITICAL: You MUST write the ENTIRE refined output strictly in fluent, professional ENGLISH.'
+        : '重要規範：請務必使用【繁體中文 (Traditional Chinese)】編寫所有內容。'
 
     // 呼叫 AI 進行精煉修訂
     const { output: aiResult } = await generateText({
-      model: openai("gpt-4o-mini"),
+      model: openai('gpt-4o-mini'),
+      maxOutputTokens: LIMITS.maxOutputTokens,
       output: Output.object({
         schema: StarStoryOutputSchema,
       }),
@@ -56,15 +67,15 @@ Guidelines:
       prompt: `[Original STAR Story]
 Situation: ${originalStory.situation}
 Task: ${originalStory.task}
-Action: ${originalStory.action.join("; ")}
+Action: ${originalStory.action.join('; ')}
 Result: ${originalStory.result}
 
 [User's Additional Context / Refinement Input]
 ${additionalContext}`,
-    });
+    })
 
     if (!aiResult) {
-      throw new Error("AI failed to refine story.");
+      throw new Error('AI failed to refine story.')
     }
 
     // 將修訂後的新故事寫入 DB
@@ -79,14 +90,14 @@ ${additionalContext}`,
       result: aiResult.result,
       memoryAnchors: aiResult.memoryAnchors,
       followUpQuestions: aiResult.followUpQuestions ?? [],
-    });
+    })
 
-    return NextResponse.json({ success: true, data: insertedStory });
+    return NextResponse.json({ success: true, data: insertedStory })
   } catch (error) {
-    console.error("Error refining STAR story:", error);
+    console.error('Error refining STAR story:', error)
     return NextResponse.json(
-      { error: "Failed to refine story" },
-      { status: 500 }
-    );
+      { error: 'Failed to refine story' },
+      { status: 500 },
+    )
   }
 }

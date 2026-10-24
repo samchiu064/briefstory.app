@@ -5,10 +5,14 @@ import { z } from 'zod'
 import { languageEnum, categoryEnum, NewStory } from '@/db/schema'
 import { StarStoryOutputSchema } from '@/types/story'
 import { createStory } from '@/lib/dal/stories'
+import { LIMITS } from '@/lib/limits'
 
 // 1. 定義前端發送過來的 Request Payload 規格
 const GenerateRequestSchema = z.object({
-  resumeContent: z.string().min(10, '履歷內容至少需要 10 個字'),
+  resumeContent: z
+    .string()
+    .min(10, '履歷內容至少需要 10 個字')
+    .max(LIMITS.resumeContent, `履歷內容最多 ${LIMITS.resumeContent} 個字`),
   outputLanguage: z.enum(languageEnum.enumValues).default('en'),
   category: z.enum(categoryEnum.enumValues).default('General'),
 })
@@ -37,6 +41,7 @@ export async function POST(req: NextRequest) {
 
     const { output: aiResult } = await generateText({
       model: openai('gpt-4o-mini'),
+      maxOutputTokens: LIMITS.maxOutputTokens,
       output: Output.object({
         schema: StarStoryOutputSchema,
       }),
