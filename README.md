@@ -6,7 +6,7 @@
 
 **Turn resume bullets into interview-ready STAR stories, then refine and rehearse them.**
 
-[briefstory.app](https://briefstory.app) · English / 繁體中文
+[briefstory.app](https://briefstory.app) · English / 繁體中文 · Built by [Sam Chiu](https://samchiu.dev)
 
 <img src="public/og/en.png" alt="BriefStory: Turn resume bullets into interview-ready stories" width="720" />
 
@@ -195,6 +195,6 @@ Text you submit is sent to OpenAI to generate the story, and the input and gener
 
 ## License
 
-Copyright © 2026 Sam Chiu. All rights reserved.
+Copyright © 2026 [Sam Chiu](https://samchiu.dev). All rights reserved.
 
 This repository is public for viewing and portfolio purposes only. See [LICENSE](LICENSE) for details.

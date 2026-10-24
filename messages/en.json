@@ -85,6 +85,6 @@
     }
   },
   "Footer": {
-    "copyright": "© {year} Sam Chiu. All rights reserved."
+    "copyright": "© {year} · Built by <link>{name}</link>"
   }
 }

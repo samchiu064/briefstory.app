@@ -7,7 +7,13 @@ import { Geist, Geist_Mono, Inter } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import '../globals.css'
 import { cn } from '@/lib/utils'
-import { languageAlternates, OG_LOCALES, SITE_NAME, SITE_URL } from '@/lib/site'
+import {
+  AUTHOR,
+  languageAlternates,
+  OG_LOCALES,
+  SITE_NAME,
+  SITE_URL,
+} from '@/lib/site'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -47,6 +53,9 @@ export async function generateMetadata({
     title,
     description,
     applicationName: SITE_NAME,
+    // <meta name="author"> 與 <link rel="author">
+    authors: [{ name: AUTHOR.name, url: AUTHOR.url }],
+    creator: AUTHOR.name,
     alternates: {
       canonical: `/${locale}`,
       // 告訴搜尋引擎同一頁的其他語言版本
@@ -92,6 +101,8 @@ export default async function LocaleLayout({
     inLanguage: locale,
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
+    // 讓搜尋引擎知道這個作品的作者
+    author: { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.url },
   }
 
   return (

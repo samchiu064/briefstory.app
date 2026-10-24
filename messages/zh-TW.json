@@ -85,6 +85,6 @@
     }
   },
   "Footer": {
-    "copyright": "© {year} Sam Chiu. 保留所有權利。"
+    "copyright": "© {year} · 由 <link>{name}</link> 打造"
   }
 }

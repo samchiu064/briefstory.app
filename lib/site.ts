@@ -9,6 +9,9 @@ export const SITE_NAME = 'BriefStory'
 // 版權年份：作品首次發布的年份（固定值，不隨時間變動）
 export const COPYRIGHT_YEAR = 2026
 
+// 作者：顯示在頁尾，並寫進 metadata 與結構化資料
+export const AUTHOR = { name: 'Sam Chiu', url: 'https://samchiu.dev' } as const
+
 // Open Graph 使用底線格式的 locale（例如 zh_TW）
 export const OG_LOCALES = { en: 'en_US', 'zh-TW': 'zh_TW' } as const
 

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { COPYRIGHT_YEAR, SITE_NAME } from '@/lib/site'
+import { AUTHOR, COPYRIGHT_YEAR, SITE_NAME } from '@/lib/site'
 
 export function SiteFooter() {
   const t = useTranslations('Footer')
@@ -18,7 +18,20 @@ export function SiteFooter() {
           />
           {SITE_NAME}
         </span>
-        <p>{t('copyright', { year: COPYRIGHT_YEAR })}</p>
+        <p>
+          {t.rich('copyright', {
+            year: COPYRIGHT_YEAR,
+            name: AUTHOR.name,
+            link: (chunks) => (
+              <a
+                href={AUTHOR.url}
+                className="font-medium text-foreground underline-offset-4 hover:underline"
+              >
+                {chunks}
+              </a>
+            ),
+          })}
+        </p>
       </div>
     </footer>
   )
