@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" fill="none">
+  <rect x="96" y="70" width="170" height="220" rx="14" fill="#94a3b8" fill-opacity=".18" stroke="#94a3b8" stroke-width="3"/>
+  <g stroke="#94a3b8" stroke-width="8" stroke-linecap="round">
+    <path d="M126 116h110M126 150h90M126 184h104M126 218h70M126 252h96"/>
+  </g>
+  <g fill="#94a3b8"><circle cx="114" cy="116" r="5"/><circle cx="114" cy="150" r="5"/><circle cx="114" cy="184" r="5"/><circle cx="114" cy="218" r="5"/><circle cx="114" cy="252" r="5"/></g>
+  <path d="M300 180h50m0 0-16-16m16 16-16 16" stroke="#6366f1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g font-family="ui-sans-serif,system-ui,sans-serif" font-size="22" font-weight="700" fill="#fff" text-anchor="middle">
+    <rect x="384" y="70" width="160" height="46" rx="10" fill="#6366f1"/><text x="464" y="101">Situation</text>
+    <rect x="384" y="128" width="160" height="46" rx="10" fill="#8b5cf6"/><text x="464" y="159">Task</text>
+    <rect x="384" y="186" width="160" height="46" rx="10" fill="#0ea5e9"/><text x="464" y="217">Action</text>
+    <rect x="384" y="244" width="160" height="46" rx="10" fill="#10b981"/><text x="464" y="275">Result</text>
+  </g>
+</svg>

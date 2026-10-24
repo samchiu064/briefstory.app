@@ -1,0 +1,90 @@
+{
+  "Metadata": {
+    "title": "BriefStory：把履歷重點變成面試故事",
+    "description": "BriefStory 把你的經歷改寫成結構清楚的 STAR 回答，並協助你精煉與練習。"
+  },
+  "Nav": {
+    "home": "BriefStory 首頁"
+  },
+  "ThemeToggle": {
+    "label": "切換深淺色主題"
+  },
+  "LanguageToggle": {
+    "label": "切換語言"
+  },
+  "Languages": {
+    "en": "English",
+    "zh-TW": "繁體中文"
+  },
+  "Hero": {
+    "badge": "AI 面試準備助手",
+    "title": "把履歷重點變成<highlight>面試就能說的故事</highlight>",
+    "subtitle": "BriefStory 把你的經歷改寫成結構清楚的 STAR 回答，並協助你精煉與練習。"
+  },
+  "Categories": {
+    "leadership": "領導力",
+    "conflictResolution": "衝突處理",
+    "technicalChallenge": "技術挑戰",
+    "failureGrowth": "失敗與成長",
+    "crossFunctional": "跨部門合作",
+    "general": "一般"
+  },
+  "Star": {
+    "situation": "情境",
+    "task": "任務",
+    "action": "行動",
+    "result": "結果"
+  },
+  "Generator": {
+    "sectionLabel": "故事產生器",
+    "inputTitle": "你的經歷",
+    "inputDescription": "選擇題型，再貼上你做過的事。",
+    "category": "題型",
+    "outputLanguage": "輸出語言",
+    "experience": "經歷／履歷重點／職務內容",
+    "experiencePlaceholder": "貼上你的履歷 Bullet Points、專案段落描述，或是這份職缺你負責的核心範疇…",
+    "generate": "產生故事",
+    "generating": "正在產生 STAR 故事…",
+    "refineLabel": "補充細節以精煉回答",
+    "refinePlaceholder": "例如：補上量化數據（提升了 35% 效能），或是回答下方提示提出的問題…",
+    "refine": "根據補充內容重新精煉故事",
+    "refining": "正在整合資訊並重新產生故事…",
+    "languageValue": "語言：{language}",
+    "memoryAnchors": "記憶關鍵字",
+    "tips": "讓這個故事更有說服力的提示：",
+    "emptyState": "你的 STAR 故事會顯示在這裡。",
+    "emptyStateLoading": "正在撰寫你的 STAR 故事…",
+    "errorGenerate": "故事產生失敗",
+    "errorRefine": "故事精煉失敗",
+    "errorUnexpected": "發生未預期的錯誤"
+  },
+  "Teleprompter": {
+    "open": "開啟提詞卡練習模式",
+    "memoryAnchors": "記憶關鍵字（心智骨架）",
+    "showDetails": "顯示 STAR 完整回答對照",
+    "hideDetails": "隱藏 STAR 完整回答",
+    "revealHint": "先試著只看關鍵字把故事說出來，再對照完整回答。",
+    "reveal": "顯示回答"
+  },
+  "Features": {
+    "eyebrow": "為什麼選擇 BriefStory",
+    "title": "每場面試，都帶著準備好的故事出發",
+    "description": "BriefStory 把你已經擁有的經歷，整理成清楚、具體、說得出口的回答。",
+    "cta": "用你的履歷試試看",
+    "generate": {
+      "title": "履歷重點變成 STAR 故事",
+      "description": "貼上一條履歷重點或專案描述，幾秒內就得到情境、任務、行動、結果結構完整的回答。"
+    },
+    "refine": {
+      "title": "補充細節，越改越好",
+      "description": "補上初稿漏掉的數據、合作對象或取捨，得到同一個故事更精準的版本。"
+    },
+    "teleprompter": {
+      "title": "用提詞卡練習",
+      "description": "對著提詞卡大聲練習，讓面試官問起時，你說得自然流暢。"
+    }
+  },
+  "Footer": {
+    "copyright": "© {year} Sam Chiu. 保留所有權利。"
+  }
+}

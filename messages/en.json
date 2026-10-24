@@ -1,0 +1,90 @@
+{
+  "Metadata": {
+    "title": "BriefStory: Turn resume bullets into interview-ready stories",
+    "description": "BriefStory rewrites your experience as structured STAR answers, then helps you refine and rehearse them."
+  },
+  "Nav": {
+    "home": "BriefStory home"
+  },
+  "ThemeToggle": {
+    "label": "Toggle theme"
+  },
+  "LanguageToggle": {
+    "label": "Change language"
+  },
+  "Languages": {
+    "en": "English",
+    "zh-TW": "繁體中文"
+  },
+  "Hero": {
+    "badge": "AI-powered interview prep",
+    "title": "Turn resume bullets into <highlight>interview-ready stories</highlight>",
+    "subtitle": "BriefStory rewrites your experience as structured STAR answers, then helps you refine and rehearse them."
+  },
+  "Categories": {
+    "leadership": "Leadership",
+    "conflictResolution": "Conflict Resolution",
+    "technicalChallenge": "Technical Challenge",
+    "failureGrowth": "Failure & Growth",
+    "crossFunctional": "Cross-Functional",
+    "general": "General"
+  },
+  "Star": {
+    "situation": "Situation",
+    "task": "Task",
+    "action": "Action",
+    "result": "Result"
+  },
+  "Generator": {
+    "sectionLabel": "Story generator",
+    "inputTitle": "Your experience",
+    "inputDescription": "Pick a category, then paste what you did.",
+    "category": "Category",
+    "outputLanguage": "Output Language",
+    "experience": "Experience / Bullet Points / Job Description",
+    "experiencePlaceholder": "Paste your resume bullets, a project summary, or the key responsibilities of the role…",
+    "generate": "Generate Story",
+    "generating": "Generating STAR story…",
+    "refineLabel": "Add details to refine this story",
+    "refinePlaceholder": "e.g. add numbers (improved performance by 35%), or answer the tips below…",
+    "refine": "Refine story with these details",
+    "refining": "Working your details into the story…",
+    "languageValue": "Language: {language}",
+    "memoryAnchors": "Memory Anchors",
+    "tips": "Tips to make this story even stronger:",
+    "emptyState": "Your STAR story will appear here.",
+    "emptyStateLoading": "Writing your STAR story…",
+    "errorGenerate": "Failed to generate story",
+    "errorRefine": "Failed to refine story",
+    "errorUnexpected": "An unexpected error occurred"
+  },
+  "Teleprompter": {
+    "open": "Open teleprompter practice mode",
+    "memoryAnchors": "Memory Anchors",
+    "showDetails": "Show full STAR answer",
+    "hideDetails": "Hide full STAR answer",
+    "revealHint": "Try telling the story from the anchors first, then check the full answer.",
+    "reveal": "Reveal answer"
+  },
+  "Features": {
+    "eyebrow": "Why BriefStory",
+    "title": "Walk into every interview with a story ready",
+    "description": "BriefStory turns the experience you already have into answers that are clear, specific, and easy to deliver.",
+    "cta": "Try it with your resume",
+    "generate": {
+      "title": "Bullets to STAR Stories",
+      "description": "Paste a resume bullet or project summary and get a structured Situation, Task, Action, Result answer in seconds."
+    },
+    "refine": {
+      "title": "Refine with More Context",
+      "description": "Add details the first draft missed, like numbers, stakeholders, or trade-offs, and get a sharper version of the same story."
+    },
+    "teleprompter": {
+      "title": "Rehearse with the Teleprompter",
+      "description": "Practice out loud with a scrolling teleprompter, so the story sounds natural when the interviewer asks."
+    }
+  },
+  "Footer": {
+    "copyright": "© {year} Sam Chiu. All rights reserved."
+  }
+}
