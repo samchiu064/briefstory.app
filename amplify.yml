@@ -1,0 +1,26 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Next.js 16 requires Node.js 20.9+
+        - nvm install 22
+        - nvm use 22
+        # Use the pnpm version pinned in package.json "packageManager"
+        - corepack enable
+        - pnpm install --frozen-lockfile
+    build:
+      commands:
+        # Amplify only exposes console environment variables at build time.
+        # Write the server-side ones into .env.production so API routes can
+        # read them at runtime. (.env* is gitignored, so this never gets committed.)
+        - env | grep -E '^(DATABASE_URL|OPENAI_API_KEY|NEXT_PUBLIC_[A-Z_]*)=' >> .env.production
+        - pnpm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .next/cache/**/*
+      - node_modules/**/*
